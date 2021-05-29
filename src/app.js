@@ -18,6 +18,6 @@ App.use(cors());
 App.use(helmet());
 App.use(express.json());
 
-App.use(routes);
+App.use('/v1', routes);
 
 App.listen(process.env.APP_PORT);

@@ -1,14 +1,14 @@
 import 'dotenv/config';
-import Express from 'express';
-import Mongoose from 'mongoose';
+import express from 'express';
+import mongoose from 'mongoose';
 import cors from 'cors';
 import helmet from 'helmet';
 
 import routes from './routes';
 
-const App = Express();
+const App = express();
 
-Mongoose.connect(process.env.MONGO_URL, {
+mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
@@ -16,6 +16,7 @@ Mongoose.connect(process.env.MONGO_URL, {
 
 App.use(cors());
 App.use(helmet());
+App.use(express.json());
 
 App.use(routes);
 

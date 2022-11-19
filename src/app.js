@@ -1,8 +1,10 @@
 import 'dotenv/config';
+import 'express-async-errors';
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import helmet from 'helmet';
+import { errors } from 'celebrate';
 
 import routes from './routes';
 
@@ -20,4 +22,4 @@ App.use(express.json());
 
 App.use('/v1', routes);
 
-App.listen(process.env.APP_PORT);
+App.use(errors());

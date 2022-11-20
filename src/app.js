@@ -11,17 +11,17 @@ import './database/mongodb';
 import routes from './routes';
 import routeAliases from './middlewares/routeAliases';
 
-const App = express();
+const app = express();
 
-App.use(cors());
-App.use(helmet());
-App.use(express.json());
-App.use(routeAliases);
+app.use(cors());
+app.use(helmet());
+app.use(express.json());
+app.use(routeAliases);
 
-App.use('/v1', routes);
+app.use('/v1', routes);
 
-App.use(errors());
-App.use(async (error, _, response, next) => {
+app.use(errors());
+app.use(async (error, _, response, next) => {
   if (isBoom(error)) {
     const { statusCode, payload } = error.output;
 
@@ -35,4 +35,4 @@ App.use(async (error, _, response, next) => {
   return next(error);
 });
 
-export default App;
+export default app;

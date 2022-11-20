@@ -7,16 +7,11 @@ import helmet from 'helmet';
 import { errors } from 'celebrate';
 import { isBoom } from '@hapi/boom';
 
+import './database/mongodb';
 import routes from './routes';
 import routeAliases from './middlewares/routeAliases';
 
 const App = express();
-
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-});
 
 App.use(cors());
 App.use(helmet());

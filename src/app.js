@@ -1,10 +1,11 @@
 import 'dotenv/config';
 import 'express-async-errors';
 import express from 'express';
-import mongoose from 'mongoose';
+
 import cors from 'cors';
 import helmet from 'helmet';
 import { errors } from 'celebrate';
+import { isBoom } from '@hapi/boom';
 
 import routes from './routes';
 import routeAliases from './middlewares/routeAliases';

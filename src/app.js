@@ -7,6 +7,7 @@ import helmet from 'helmet';
 import { errors } from 'celebrate';
 
 import routes from './routes';
+import routeAliases from './middlewares/routeAliases';
 
 const App = express();
 
@@ -19,6 +20,7 @@ mongoose.connect(process.env.MONGO_URL, {
 App.use(cors());
 App.use(helmet());
 App.use(express.json());
+App.use(routeAliases);
 
 App.use('/v1', routes);
 

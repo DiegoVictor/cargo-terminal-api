@@ -6,7 +6,9 @@ import cors from 'cors';
 import helmet from 'helmet';
 import { errors } from 'celebrate';
 import { isBoom } from '@hapi/boom';
+import swagger from 'swagger-ui-express';
 
+import swaggerDocument from './swagger.json';
 import './database/mongodb';
 import routes from './routes';
 import routeAliases from './middlewares/routeAliases';
@@ -18,6 +20,7 @@ app.use(helmet());
 app.use(express.json());
 app.use(routeAliases);
 
+app.use('/docs', swagger.serve, swagger.setup(swaggerDocument));
 app.use('/v1', routes);
 
 app.use(errors());

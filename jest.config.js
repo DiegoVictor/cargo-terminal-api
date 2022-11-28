@@ -21,10 +21,16 @@ module.exports = {
   collectCoverage: true,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
-  collectCoverageFrom: ['src/app/**/*.js'],
+  collectCoverageFrom: [
+    'src/**/*.js',
+    '!src/*.js',
+    '!src/models/*.js',
+    '!src/routes/*.js',
+    '!src/validators/*.js',
+  ],
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: '__tests__/coverage',
+  coverageDirectory: 'tests/coverage',
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
@@ -32,7 +38,7 @@ module.exports = {
   // ],
 
   // A list of reporter names that Jest uses when writing coverage reports
-  coverageReporters: ['text', 'lcov'],
+  coverageReporters: ['text', 'lcov', 'text-summary'],
 
   // An object that configures minimum threshold enforcement for coverage results
   // coverageThreshold: undefined,
@@ -47,10 +53,10 @@ module.exports = {
   // forceCoverageMatch: [],
 
   // A path to a module which exports an async function that is triggered once before all test suites
-  globalSetup: './__tests__/setup.js',
+  globalSetup: './tests/setup.js',
 
   // A path to a module which exports an async function that is triggered once after all test suites
-  globalTeardown: './__tests__/teardown.js',
+  globalTeardown: './tests/teardown.js',
 
   // A set of global variables that need to be available in all test environments
   // globals: {},
@@ -136,7 +142,7 @@ module.exports = {
   // testLocationInResults: false,
 
   // The glob patterns Jest uses to detect test files
-  testMatch: ['**/__tests__/**/*.test.js'],
+  testMatch: ['**/tests/**/*.spec.js'],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   // testPathIgnorePatterns: [

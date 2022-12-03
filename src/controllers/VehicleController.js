@@ -1,5 +1,6 @@
 import getRepositories from '../utils/getRepositories';
 import paginationLinks from '../utils/paginationLinks';
+import UpdateVehicleService from '../services/UpdateVehicleService';
 
 class VehicleController {
   async index(request, response) {
@@ -30,6 +31,17 @@ class VehicleController {
     const vehicle = await vehicleRepository.create({ type, model });
 
     return response.status(201).json(vehicle);
+  }
+
+  async update(request, response) {
+    const { id } = request.params;
+    const { type, model } = request.body;
+
+    const [vehicleRepository] = getRepositories('vehicle');
+    const updateVehicleService = new UpdateVehicleService(vehicleRepository);
+    const vehicle = await updateVehicleService.run({ id, type, model });
+
+    return response.json(vehicle);
   }
 }
 

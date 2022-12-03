@@ -23,6 +23,14 @@ class VehicleController {
     return response.json(vehicles);
   }
 
+  async store(request, response) {
+    const { type, model } = request.body;
+
+    const [vehicleRepository] = getRepositories('vehicle');
+    const vehicle = await vehicleRepository.create({ type, model });
+
+    return response.status(201).json(vehicle);
+  }
 }
 
 export default VehicleController;

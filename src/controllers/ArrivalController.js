@@ -1,3 +1,4 @@
+import StoreArrivalService from '../services/StoreArrivalService';
 import FindArrivalsService from '../services/FindArrivalsService';
 import getRepositories from '../utils/getRepositories';
 import paginationLinks from '../utils/paginationLinks';
@@ -26,6 +27,27 @@ class ArrivalController {
     }
 
     return response.json(arrivals);
+  }
+
+  async store(request, response) {
+    const { filled, vehicle_id, driver_id, origin, destination } = request.body;
+
+    const [arrivalRepository, driverRepository, vehicleRepository] =
+      getRepositories(['arrival', 'driver', 'vehicle']);
+    const storeArrivalService = new StoreArrivalService(
+      arrivalRepository,
+      driverRepository,
+      vehicleRepository
+    );
+    const arrival = await storeArrivalService.run({
+      filled,
+      vehicle_id,
+      driver_id,
+      origin,
+      destination,
+    });
+
+    return response.status(201).json(arrival);
   }
 }
 

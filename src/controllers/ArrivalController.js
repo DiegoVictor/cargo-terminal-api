@@ -1,3 +1,4 @@
+import UpdateArrivalService from '../services/UpdateArrivalService';
 import StoreArrivalService from '../services/StoreArrivalService';
 import FindArrivalsService from '../services/FindArrivalsService';
 import getRepositories from '../utils/getRepositories';
@@ -48,6 +49,28 @@ class ArrivalController {
     });
 
     return response.status(201).json(arrival);
+  }
+
+  async update(request, response) {
+    const { id } = request.params;
+    const { vehicle_id, driver_id, filled, ...rest } = request.body;
+
+    const [arrivalRepository, driverRepository, vehicleRepository] =
+      getRepositories(['arrival', 'driver', 'vehicle']);
+    const updateArrivalService = new UpdateArrivalService(
+      arrivalRepository,
+      driverRepository,
+      vehicleRepository
+    );
+    const arrival = await updateArrivalService.run({
+      id,
+      vehicle_id,
+      driver_id,
+      filled,
+      ...rest,
+    });
+
+    return response.json(arrival);
   }
 }
 

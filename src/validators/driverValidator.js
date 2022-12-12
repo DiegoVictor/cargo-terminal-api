@@ -13,3 +13,17 @@ export const store = celebrate({
     cnh_type: Joi.string().valid('A', 'B', 'C', 'D', 'E').required(),
   }),
 });
+
+export const update = celebrate({
+  [Segments.BODY]: Joi.object().keys({
+    vehicle_id: Joi.string().optional(),
+    cpf: Joi.string().length(11).regex(/\d+/).optional(),
+    name: Joi.string().min(3).optional(),
+    phone: Joi.string().regex(/\d+/).optional(),
+    birthday: Joi.date().max(dayjs().subtract(18, 'years')).optional(),
+    gender: Joi.string().valid('F', 'M').optional(),
+    cnh_number: Joi.string().optional(),
+    cnh_type: Joi.string().valid('A', 'B', 'C', 'D', 'E').optional(),
+    active: Joi.boolean().optional(),
+  }),
+});

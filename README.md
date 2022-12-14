@@ -13,6 +13,25 @@
 
 Responsible for provide data to the [`web`](https://github.com/DiegoVictor/cargo-terminal-web) version. Permit to register vehicles, drivers, arrivals and allows to retrieve an aggregation of travels. The app has pagination, pagination's link header (to previous, next, first and last page), friendly errors, validation, also a simple versioning was made.
 
+## Table of Contents
+* [Installing](#installing)
+  * [Configuring](#configuring)
+    * [MongoDB](#mongodb)
+    * [.env](#env)
+* [Usage](#usage)
+  * [Error Handling](#error-handling)
+    * [Errors Reference](#errors-reference)
+  * [Pagination](#pagination)
+    * [Link Header](#link-header)
+    * [X-Total-Count](#x-total-count)
+  * [Versioning](#versioning)
+  * [Routes](#routes)
+    * [Requests](#requests)
+* [Running the tests](#running-the-tests)
+  * [Coverage report](#coverage-report)
+
+# Installing
+Easy peasy lemon squeezy:
 ```
 $ yarn
 ```

@@ -34,16 +34,14 @@ describe('Driver controller', () => {
 
   it('should be able to get a second page of drivers', async () => {
     const page = 20;
-    const drivers = await factory.createMany('Driver', page + 3);
 
+    await factory.createMany('Driver', page + 3);
     const response = await request(app)
       .get('/v1/drivers?page=2')
       .expect(200)
       .send();
 
-    drivers.slice(20).forEach((driver) => {
-      expect(response.body).toContainEqual(driver);
-    });
+    expect(response.body.length).toBe(3);
   });
 
   it('should be able to get a list of drivers filtered by vehicle', async () => {

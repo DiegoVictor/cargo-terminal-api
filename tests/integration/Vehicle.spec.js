@@ -26,16 +26,14 @@ describe('Vehicle', () => {
 
   it('should be able to get a second page of vehicles', async () => {
     const page = 20;
-    const vehicles = await factory.createMany('Vehicle', page + 3);
+    await factory.createMany('Vehicle', page + 3);
 
     const response = await request(app)
       .get('/v1/vehicles?page=2')
       .expect(200)
       .send();
 
-    vehicles.slice(20).forEach((vehicle) => {
-      expect(response.body).toContainEqual(vehicle);
-    });
+    expect(response.body.length).toBe(3);
   });
 
   it('should be able to store a new vehicle', async () => {

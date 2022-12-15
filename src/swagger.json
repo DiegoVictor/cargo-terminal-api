@@ -14,6 +14,98 @@
     }
   ],
   "paths": {
+    "/drivers": {
+      "get": {
+        "tags": ["Drivers"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "active",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "enum": [0, 1]
+            },
+            "example": 0
+          },
+          {
+            "in": "query",
+            "name": "vehicle",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "enum": [0, 1]
+            },
+            "example": 0
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lists drivers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "allOf": [
+                      {
+                        "title": "Driver",
+                        "properties": {
+                          "_id": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      {
+                        "$ref": "#/components/schemas/Driver"
+                      }
+                    ]
+                  }
+                },
+                "example": [
+                  {
+                    "_id": "60bbb289d63cfd06c06cd3b9",
+                    "vehicle_id": "60bbb21dd63cfd06c06cd3b8",
+                    "active": true,
+                    "cpf": "41921630563",
+                    "name": "John Doe",
+                    "phone": "+55 679 924356443",
+                    "birthday": "136-12-25",
+                    "gender": "M",
+                    "cnh_number": "DJUKPTRF9EH178332",
+                    "cnh_type": "A"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "description": "Total number of registries in the database",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Link": {
+                "description": "Next, Previous, First and Last page's urls",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+    }
+  },
   "components": {
     "schemas": {
       "Driver": {

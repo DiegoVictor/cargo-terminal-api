@@ -14,5 +14,39 @@
     }
   ],
   "paths": {
+  "components": {
+    "schemas": {
+      "Driver": {
+        "properties": {
+          "vehicle_id": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "cpf": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "birthday": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string"
+          },
+          "cnh_number": {
+            "type": "string"
+          },
+          "cnh_type": {
+            "type": "string"
+          }
+        }
+      },
+    }
   }
 }

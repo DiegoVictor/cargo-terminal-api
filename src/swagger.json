@@ -196,6 +196,94 @@
           }
         }
       }
+    },
+    "/drivers/{id}": {
+      "put": {
+        "tags": ["Drivers"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "60bbb289d63cfd06c06cd3b9"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Driver"
+                  },
+                  {
+                    "title": "Vehicle"
+                  }
+                ]
+              },
+              "example": {
+                "vehicle_id": "6137997ac96e4a1570797420"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update a car",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "title": "Driver",
+                      "properties": {
+                        "_id": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    {
+                      "$ref": "#/components/schemas/Driver"
+                    }
+                  ]
+                },
+                "example": {
+                  "_id": "60bbb289d63cfd06c06cd3b9",
+                  "active": true,
+                  "cpf": "41921630563",
+                  "name": "John Doe",
+                  "phone": "+55 679 924356443",
+                  "birthday": "2000-12-25",
+                  "gender": "M",
+                  "cnh_number": "DJUKPTRF9EH178332",
+                  "cnh_type": "A",
+                  "vehicle_id": "6137997ac96e4a1570797420"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Driver not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "statusCode": 404,
+                  "error": "Not Found",
+                  "message": "Driver not found",
+                  "code": 245,
+                  "docs": "https://github.com/DiegoVictor/cargo-terminal-api#errors-reference"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

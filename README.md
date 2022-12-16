@@ -35,6 +35,12 @@ Easy peasy lemon squeezy:
 ```
 $ yarn
 ```
+Or:
+```
+$ npm install
+```
+> Was installed and configured the [`eslint`](https://eslint.org/) and [`prettier`](https://prettier.io/) to keep the code clean and patterned.
+
 
 # Dependencies
 Was installed and configured the `eslint` and `prettier` to keep the code clean and patterned.

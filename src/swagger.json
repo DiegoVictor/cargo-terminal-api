@@ -104,6 +104,98 @@
           }
         }
       },
+      "post": {
+        "tags": ["Drivers"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Driver"
+                  },
+                  {
+                    "title": "Driver",
+                    "required": [
+                      "cpf",
+                      "name",
+                      "phone",
+                      "birthday",
+                      "gender",
+                      "cnh_number",
+                      "cnh_type",
+                      "vehicle_id"
+                    ]
+                  }
+                ]
+              },
+              "example": {
+                "cpf": "99999999999",
+                "name": "John Doe",
+                "phone": "+55 679 924356443",
+                "birthday": "2000-01-01",
+                "gender": "M",
+                "cnh_number": "DJUKPTRF9EH178332",
+                "cnh_type": "A",
+                "vehicle_id": "6137997ac96e4a1570797420"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Create a new driver",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "title": "Driver",
+                      "properties": {
+                        "_id": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    {
+                      "$ref": "#/components/schemas/Driver"
+                    }
+                  ]
+                },
+                "example": {
+                  "_id": "61379eedc0d2453b5835beed",
+                  "active": true,
+                  "cpf": "99999999999",
+                  "name": "John Doe",
+                  "phone": "+55 679 924356443",
+                  "birthday": "1999-12-31",
+                  "gender": "M",
+                  "cnh_number": "DJUKPTRF9EH178332",
+                  "cnh_type": "A",
+                  "vehicle_id": "6137997ac96e4a1570797420"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Vehicle not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "statusCode": 404,
+                  "error": "Not Found",
+                  "message": "Vehicle not found",
+                  "code": 244,
+                  "docs": "https://github.com/DiegoVictor/cargo-terminal-api#errors-reference"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

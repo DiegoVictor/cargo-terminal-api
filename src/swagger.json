@@ -284,6 +284,70 @@
           }
         }
       }
+    },
+    "/vehicles": {
+      "get": {
+        "tags": ["Vehicles"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lists cars",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "allOf": [
+                      {
+                        "title": "Vehicle",
+                        "properties": {
+                          "_id": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      {
+                        "$ref": "#/components/schemas/Vehicle"
+                      }
+                    ]
+                  }
+                },
+                "example": [
+                  {
+                    "_id": "6137997ac96e4a1570797420",
+                    "type": 2,
+                    "model": "Camry"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "description": "Total number of registries in the database",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Link": {
+                "description": "Next, Previous, First and Last page's urls",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
     }
   },
   "components": {

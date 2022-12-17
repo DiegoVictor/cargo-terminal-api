@@ -348,6 +348,62 @@
           }
         }
       },
+      "post": {
+        "tags": ["Vehicles"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Vehicle"
+                  },
+                  {
+                    "title": "Vehicle",
+                    "required": [
+                      "type",
+                      "model"
+                    ]
+                  }
+                ]
+              },
+              "example": {
+                "type": 2,
+                "model": "Camry"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Create a new car",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "title": "Vehicle",
+                      "properties": {
+                        "_id": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    {
+                      "$ref": "#/components/schemas/Vehicle"
+                    }
+                  ]
+                },
+                "example": {
+                  "_id": "6137997ac96e4a1570797420",
+                  "type": 2,
+                  "model": "Camry"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

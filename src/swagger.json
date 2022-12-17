@@ -404,6 +404,92 @@
           }
         }
       }
+    },
+    "/vehicles/{id}": {
+      "put": {
+        "tags": ["Vehicles"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "6137997ac96e4a1570797420"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Vehicle"
+                  },
+                  {
+                    "title": "Vehicle",
+                    "required": [
+                      "type",
+                      "model"
+                    ]
+                  }
+                ]
+              },
+              "example": {
+                "type": 1,
+                "model": "Land Cruiser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update a car",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "title": "Vehicle",
+                      "properties": {
+                        "_id": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    {
+                      "$ref": "#/components/schemas/Vehicle"
+                    }
+                  ]
+                },
+                "example": {
+                  "_id": "6137997ac96e4a1570797420",
+                  "type": 1,
+                  "model": "Land Cruiser"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Vehicle not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "statusCode": 404,
+                  "error": "Not Found",
+                  "message": "Vehicle not found",
+                  "code": 344,
+                  "docs": "https://github.com/DiegoVictor/cargo-terminal-api#errors-reference"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

@@ -651,6 +651,128 @@
             }
           }
         }
+      },
+      "post": {
+        "tags": ["Arrivals"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "Arrival",
+                "required": [
+                  "vehicle_id",
+                  "driver_id",
+                  "origin",
+                  "destination"
+                ],
+                "properties": {
+                  "vehicle_id": {
+                    "type": "string"
+                  },
+                  "driver_id": {
+                    "type": "string"
+                  },
+                  "origin": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    }
+                  },
+                  "destination": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    }
+                  }
+                }
+              },
+              "example": {
+                "vehicle_id": "6137997ac96e4a1570797420",
+                "driver_id": "60bbb289d63cfd06c06cd3b9",
+                "origin": {
+                  "longitude": -145.6955,
+                  "latitude": 16.3805
+                },
+                "destination": {
+                  "longitude": -100.6317,
+                  "latitude": 60.1977
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Create a new arrival",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "title": "Arrival",
+                      "properties": {
+                        "_id": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    {
+                      "$ref": "#/components/schemas/Arrival"
+                    }
+                  ]
+                },
+                "example": {
+                  "_id": "6137a835a5bb1d56307c4696",
+                  "filled": false,
+                  "origin": [
+                    -145.6955,
+                    16.3805
+                  ],
+                  "destination": [
+                    -100.6317,
+                    60.1977
+                  ],
+                  "driver_id": "60bbb289d63cfd06c06cd3b9",
+                  "vehicle_id": "6137997ac96e4a1570797420",
+                  "createdAt": "2021-09-07T17:58:13.019Z",
+                  "updatedAt": "2021-09-07T17:58:13.019Z"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Vehicle or Driver not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "Vehicle not found": {
+                    "value": {
+                      "statusCode": 404,
+                      "error": "Not Found",
+                      "message": "Vehicle not found",
+                      "code": 144,
+                      "docs": "https://github.com/DiegoVictor/cargo-terminal-api#errors-reference"
+                    }
+                  },
+                  "Driver not found": {
+                    "value": {
+                      "statusCode": 404,
+                      "error": "Not Found",
+                      "message": "Driver not found",
+                      "code": 145,
+                      "docs": "https://github.com/DiegoVictor/cargo-terminal-api#errors-reference"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

@@ -490,6 +490,167 @@
           }
         }
       }
+    },
+    "/arrivals": {
+      "get": {
+        "tags": ["Arrivals"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "filled",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "enum": [0, 1]
+            },
+            "example": 0
+          },
+          {
+            "in": "query",
+            "name": "date_start",
+            "description": "ISO 8601",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2021-06-05T17:26:02.000Z"
+          },
+          {
+            "in": "query",
+            "name": "date_end",
+            "required": false,
+            "description": "ISO 8601",
+            "schema": {
+              "type": "string"
+            },
+            "example": "2021-12-31T17:26:02.000Z"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lists arrivals",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/Arrival"
+                      },
+                      {
+                        "title": "Arrival",
+                        "properties": {
+                          "_id": {
+                            "type": "string"
+                          },
+                          "driver": {
+                            "type": "object",
+                            "title": "Driver",
+                            "properties": {
+                              "_id": {
+                                "type": "string"
+                              },
+                              "active": {
+                                "type": "boolean"
+                              },
+                              "cpf": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "phone": {
+                                "type": "string"
+                              },
+                              "cnh_number": {
+                                "type": "string"
+                              },
+                              "cnh_type": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "vehicle": {
+                            "type": "object",
+                            "allOf": [
+                              {
+                                "title": "Vehicle",
+                                "properties": {
+                                  "_id": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              {
+                                "$ref": "#/components/schemas/Vehicle"
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "example": [
+                  {
+                    "_id": "60bbb3aad63cfd06c06cd3ba",
+                    "driver_id": "60bbb289d63cfd06c06cd3b9",
+                    "vehicle_id": "60bbb21dd63cfd06c06cd3b8",
+                    "filled": false,
+                    "origin": [
+                      -145.6955,
+                      16.3805
+                    ],
+                    "destination": [
+                      -100.6317,
+                      60.1977
+                    ],
+                    "driver": {
+                      "_id": "60bbb289d63cfd06c06cd3b9",
+                      "active": true,
+                      "cpf": "41921630563",
+                      "name": "John Doe",
+                      "phone": "+55 679 924356443",
+                      "cnh_number": "DJUKPTRF9EH178332",
+                      "cnh_type": "A"
+                    },
+                    "vehicle": {
+                      "_id": "60bbb21dd63cfd06c06cd3b8",
+                      "type": 2,
+                      "model": "Camry"
+                    },
+                    "createdAt": "2021-06-05T17:26:02.457Z",
+                    "updatedAt": "2021-06-05T17:26:02.457Z"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "description": "Total number of registries in the database",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Link": {
+                "description": "Next, Previous, First and Last page's urls",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
     }
   },
   "components": {

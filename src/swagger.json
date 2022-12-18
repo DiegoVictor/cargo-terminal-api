@@ -536,6 +536,37 @@
             "type": "string"
           }
         }
+      },
+      "Arrival": {
+        "properties": {
+          "driver_id": {
+            "type": "string"
+          },
+          "vehicle_id": {
+            "type": "string"
+          },
+          "filled": {
+            "type": "boolean"
+          },
+          "origin": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "destination": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        }
       }
     }
   }

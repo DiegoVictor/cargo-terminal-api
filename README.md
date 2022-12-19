@@ -53,6 +53,17 @@ Store all application data. If for any reason you would like to create a MongoDB
 $ docker run --name cargo-terminal-mongo -d -p 27017:27017 mongo
 ```
 
+### .env
+In this file you may configure your MongoDB connection url, app's port and a url to documentation (this will be returned with error responses, see [error section](#error-handling)). Rename the `.env.example` in the root directory to `.env` then just update with your settings.
+
+|key|description|default
+|---|---|---
+|APP_PORT|Port number where the app will run.|`3333`
+|MONGO_HOST|MongoDB's host.|`mongodb`
+|MONGO_PORT|MongoDB's port.|`27017`
+|MONGO_DB|Database name.|`cargo-terminal`
+|DOCS_URL|An url to docs where users can find more information about the app's internal code errors.|`https://github.com/DiegoVictor/cargo-terminal-api#errors-reference`
+
 
 # Dependencies
 Was installed and configured the `eslint` and `prettier` to keep the code clean and patterned.

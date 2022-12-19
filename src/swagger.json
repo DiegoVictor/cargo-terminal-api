@@ -895,6 +895,51 @@
           }
         }
       }
+    },
+    "/travels": {
+      "get": {
+        "tags": ["Travels"],
+        "responses": {
+          "200": {
+            "description": "Return an aggregation of travels (origins and destinations by type)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Travel"
+                  }
+                },
+                "example": [
+                  {
+                    "origins": [
+                      [
+                        -145.6955,
+                        16.3805
+                      ],
+                      [
+                        -145.6955,
+                        16.3805
+                      ]
+                    ],
+                    "destinations": [
+                      [
+                        -100.6317,
+                        60.1977
+                      ],
+                      [
+                        -100.6317,
+                        60.1977
+                      ]
+                    ],
+                    "type": 1
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

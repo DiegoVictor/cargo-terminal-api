@@ -41,6 +41,12 @@ $ npm install
 ```
 > Was installed and configured the [`eslint`](https://eslint.org/) and [`prettier`](https://prettier.io/) to keep the code clean and patterned.
 
+## Configuring
+The application use just one database: [MongoDB](https://www.mongodb.com). For the fastest setup is recommended to use [docker-compose](https://docs.docker.com/compose/), you just need to up all services:
+```
+$ docker-compose up -d
+```
+
 
 # Dependencies
 Was installed and configured the `eslint` and `prettier` to keep the code clean and patterned.

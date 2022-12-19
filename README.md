@@ -47,6 +47,12 @@ The application use just one database: [MongoDB](https://www.mongodb.com). For t
 $ docker-compose up -d
 ```
 
+### MongoDB
+Store all application data. If for any reason you would like to create a MongoDB container instead of use `docker-compose`, you can do it by running the following command:
+```
+$ docker run --name cargo-terminal-mongo -d -p 27017:27017 mongo
+```
+
 
 # Dependencies
 Was installed and configured the `eslint` and `prettier` to keep the code clean and patterned.

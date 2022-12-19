@@ -64,6 +64,16 @@ In this file you may configure your MongoDB connection url, app's port and a url
 |MONGO_DB|Database name.|`cargo-terminal`
 |DOCS_URL|An url to docs where users can find more information about the app's internal code errors.|`https://github.com/DiegoVictor/cargo-terminal-api#errors-reference`
 
+# Usage
+To start up the app run:
+```
+$ yarn dev:server
+```
+Or:
+```
+npm run dev:server
+```
+
 
 # Dependencies
 Was installed and configured the `eslint` and `prettier` to keep the code clean and patterned.

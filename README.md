@@ -123,6 +123,12 @@ Also in the headers of every route with pagination the `Link` header is returned
 ### X-Total-Count
 Another header returned in routes with pagination, this bring the total records amount.
 
+## Versioning
+A simple versioning was made. Just remember to set after the `host` the `/v1/` string to your requests.
+```
+GET http://localhost:3333/v1/arrivals
+```
+
 ```
 $ docker run --name truck-system-mongo -d -p 27017:27017 mongo
 $ docker start truck-system-mongo

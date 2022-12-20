@@ -102,12 +102,13 @@ Instead of only throw a simple message and HTTP Status Code this API return frie
 |246|Vehicle not found|The `id` sent not references an existing vehicle in the database while trying to update a driver.
 |344|Vehicle not found|The `id` sent not references an existing vehicle in the database while trying to update a vehicle.
 
-# Dependencies
-Was installed and configured the `eslint` and `prettier` to keep the code clean and patterned.
+## Pagination
+All the routes with pagination returns 5 records per page, to navigate to other pages just send the `page` query parameter with the number of the page.
 
-# Databases
-The application use one database: MongoDB. For the fastest setup is recommended to use docker, see how to do it below.
-> Windows users using Docker Toolbox, maybe be necessary in your `env` file set the MongoDB' host to `192.168.99.100` (docker machine IP) instead of `localhost` or `127.0.0.1`
+* To get the third page of incidents:
+```
+GET http://localhost:3333/v1/arrivals?page=3
+```
 
 ## MongoDB
 ```

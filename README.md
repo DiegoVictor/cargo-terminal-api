@@ -74,6 +74,33 @@ Or:
 npm run dev:server
 ```
 
+## Error Handling
+Instead of only throw a simple message and HTTP Status Code this API return friendly errors:
+```json
+{
+  "statusCode": 404,
+  "error": "Not Found",
+  "message": "Arrival not found",
+  "code": 146,
+  "docs": "https://github.com/DiegoVictor/devradar-api#errors-reference"
+}
+```
+> Errors are implemented with [@hapi/boom](https://github.com/hapijs/boom).
+> As you can see a url to error docs are returned too. To configure this url update the `DOCS_URL` key from `.env` file.
+> In the next sub section ([Errors Reference](#errors-reference)) you can see the errors `code` description.
+
+### Errors Reference
+|code|message|description
+|---|---|---
+|144|Vehicle not found|The `id` sent not references an existing vehicle in the database while creating an arrival.
+|145|Driver not found|The `id` sent not references an existing driver in the database while creating an arrival.
+|146|Arrival not found|The `id` sent not references an existing arrival in the database while trying to update an arrival.
+|147|Vehicle not found|The `id` sent not references an existing vehicle in the database while  trying to update an arrival.
+|148|Driver not found|The `id` sent not references an existing driver in the database while trying to update an arrival.
+|244|Vehicle not found|The `id` sent not references an existing vehicle in the database while creating a driver.
+|245|Driver not found|The `id` sent not references an existing driver in the database while trying to update a driver.
+|246|Vehicle not found|The `id` sent not references an existing vehicle in the database while trying to update a driver.
+|344|Vehicle not found|The `id` sent not references an existing vehicle in the database while trying to update a vehicle.
 
 # Dependencies
 Was installed and configured the `eslint` and `prettier` to keep the code clean and patterned.

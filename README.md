@@ -110,7 +110,19 @@ All the routes with pagination returns 5 records per page, to navigate to other 
 GET http://localhost:3333/v1/arrivals?page=3
 ```
 
-## MongoDB
+### Link Header
+Also in the headers of every route with pagination the `Link` header is returned with links to `first`, `last`, `next` and `prev` (previous) page.
+```
+<http://localhost:3333/v1/arrivals?page=7>; rel="last",
+<http://localhost:3333/v1/arrivals?page=4>; rel="next",
+<http://localhost:3333/v1/arrivals?page=1>; rel="first",
+<http://localhost:3333/v1/arrivals?page=2>; rel="prev"
+```
+> See more about this header in this MDN doc: [Link - HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Link).
+
+### X-Total-Count
+Another header returned in routes with pagination, this bring the total records amount.
+
 ```
 $ docker run --name truck-system-mongo -d -p 27017:27017 mongo
 $ docker start truck-system-mongo

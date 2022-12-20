@@ -129,17 +129,108 @@ A simple versioning was made. Just remember to set after the `host` the `/v1/` s
 GET http://localhost:3333/v1/arrivals
 ```
 
-```
-$ docker run --name truck-system-mongo -d -p 27017:27017 mongo
-$ docker start truck-system-mongo
+## Routes
+|route|HTTP Method|pagination|params|description
+|:---|:---:|:---:|:---:|:---:
+|`/travels`|GET|:x:| - |Return an aggregation of travels (origins and destinations by type).
+|`/vehicles`|GET|:heavy_check_mark:|`page` query parameter.|Lists cars.
+|`/vehicles`|POST|:x:|Body with vehicle `type` and `model`.|Create a new car.
+|`/vehicles/:id`|PUT|:x:|`:id` of the vehicle and body with vehicle `type` and `model`.|Update a car.
+|`/drivers`|GET|:heavy_check_mark:|`page`, `active` and `vehicle` query parameter.|Lists drivers.
+|`/drivers`|POST|:x:|Body with driver `cpf`, `name`, `phone`, `birthday`, `gender`, `cnh_number`, `cnh_type` and `vehicle_id`.|Create a new driver.
+|`/drivers/:id`|PUT|:x:|`:id` of the driver and body with driver `cpf`, `name`, `phone`, `birthday`, `gender`, `cnh_number`, `cnh_type` and `vehicle_id`.|Update a driver.
+|`/arrivals`|GET|:heavy_check_mark:|`page`, `filled`, `date_start` and `date_end` query parameter.|Lists arrivals.
+|`/arrivals`|POST|:x:|Body with arrival `vehicle_id`, `driver_id`, `origin.latitude`, `origin.longitude`, `destination.latitude` and `destination.longitude`.|Create a new arrival.
+|`/arrivals/:id`|PUT|:x:|`:id` of the driver and body with arrival `vehicle_id`, `driver_id`, `origin.latitude`, `origin.longitude`, `destination.latitude` and `destination.longitude`.|Update an arrival.
+
+### Requests
+* `POST /vehicles`
+
+Request body:
+```json
+{
+  "type": 2,
+  "model": "Camry"
+}
 ```
 
-# .env
-Rename the `.env.example` to `.env` then just update with yours settings.
+* `PUT /vehicles/:id`
 
-# Start Up
+Request body:
+```json
+{
+  "type": 1,
+  "model": "Land Cruiser"
+}
 ```
-$ yarn dev
+
+* `POST /drivers`
+
+Request body:
+```json
+{
+  "cpf": "99999999999",
+  "name": "John Doe",
+  "phone": "+55 679 924356443",
+  "birthday": "2000-01-01",
+  "gender": "M",
+  "cnh_number": "DJUKPTRF9EH178332",
+  "cnh_type": "A",
+  "vehicle_id": "60bbb21dd63cfd06c06cd3b8"
+}
+```
+
+* `PUT /drivers/:id`
+
+Request body:
+```json
+{
+  "cpf": "99999999999",
+  "name": "Jane Doe",
+  "phone": "+55 679 924356443",
+  "birthday": "1993-01-01",
+  "gender": "F",
+  "cnh_number": "KIENSTQF3EH179102",
+  "cnh_type": "B",
+  "vehicle_id": "60bbb1c4d63cfd06c06cd3b2"
+}
+```
+
+* `POST /arrivals`
+
+Request body:
+```json
+{
+  "vehicle_id": "60bbb1c4d63cfd06c06cd3b2",
+  "driver_id": "60bbb289d63cfd06c06cd3b9",
+  "origin": {
+    "longitude": -145.6955,
+    "latitude": 16.3805
+  },
+  "destination": {
+    "longitude": -100.6317,
+    "latitude": 60.1977
+  }
+}
+```
+
+* `PUT /arrivals/:id`
+
+Request body:
+```json
+{
+  "filled": true,
+  "vehicle_id": "60bbb1c4d63cfd06c06cd3b2",
+  "driver_id": "60bbb289d63cfd06c06cd3b9",
+  "origin": {
+    "longitude": -100.6317,
+    "latitude": 60.1977
+  },
+  "destination": {
+    "longitude": -145.6955,
+    "latitude": 16.3805
+  }
+}
 ```
 
 

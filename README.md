@@ -1,5 +1,5 @@
 # [API] Cargo Terminal
-[![Travis (.com)](https://img.shields.io/travis/com/diegovictor/cargo-terminal-api?logo=travis&style=flat-square)](https://app.travis-ci.com/github/DiegoVictor/cargo-terminal-api)
+[![AppVeyor](https://img.shields.io/appveyor/build/diegovictor/cargo-terminal-api?logo=appveyor&style=flat-square)](https://ci.appveyor.com/project/DiegoVictor/cargo-terminal-api)
 [![mongo](https://img.shields.io/badge/mongodb-5.13.3-13aa52?style=flat-square&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 [![nodemon](https://img.shields.io/badge/nodemon-2.0.12-76d04b?style=flat-square&logo=nodemon)](https://nodemon.io/)
 [![eslint](https://img.shields.io/badge/eslint-7.31.0-4b32c3?style=flat-square&logo=eslint)](https://eslint.org/)

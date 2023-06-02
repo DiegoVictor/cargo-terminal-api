@@ -1,5 +1,8 @@
 version: 1.0.{build}
 image: Ubuntu
+environment:
+  APP_PORT: 3333
+  DOCS_URL: https://github.com/DiegoVictor/cargo-terminal-api#errors-reference
 install:
   - sh: npm ci
 test_script:

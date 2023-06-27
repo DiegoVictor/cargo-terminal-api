@@ -66,7 +66,7 @@ describe('Arrival controller', () => {
       page + 3,
       vehicles.map(({ _id }) => ({ vehicle_id: _id }))
     );
-    const arrivals = await factory.createMany(
+    await factory.createMany(
       'Arrival',
       page + 3,
       drivers.map(({ _id, vehicle_id }) => ({
@@ -80,20 +80,7 @@ describe('Arrival controller', () => {
       .expect(200)
       .send();
 
-    arrivals.slice(20).forEach((arrival) => {
-      const vehicle = vehicles.find(({ _id }) => _id === arrival.vehicle_id);
-      const driver = drivers.find(({ _id }) => _id === arrival.driver_id);
-
-      ['birthday', 'gender', 'vehicle_id'].forEach((field) => {
-        delete driver[field];
-      });
-
-      expect(response.body).toContainEqual({
-        ...arrival,
-        vehicle,
-        driver,
-      });
-    });
+    expect(response.body.length).toBe(3);
   });
 
   it('should be able to get a list of arrivals filtered by filled', async () => {

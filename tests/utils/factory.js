@@ -11,7 +11,7 @@ factory.define(
   Vehicle,
   {
     model: faker.vehicle.model,
-    type: () => faker.datatype.number({ min: 1, max: 5 }),
+    type: () => faker.number.int({ min: 1, max: 5 }),
   },
   {
     afterCreate: (vehicle) => ({
@@ -25,15 +25,14 @@ factory.define(
   'Driver',
   Driver,
   {
-    cpf: () =>
-      String(faker.datatype.number({ min: 10000000000, max: 99999999999 })),
-    name: faker.name.findName,
-    phone: faker.phone.phoneNumber,
-    birthday: () => faker.date.past(2000).toString(),
+    cpf: () => String(faker.number.int({ min: 10000000000, max: 99999999999 })),
+    name: faker.person.fullName,
+    phone: faker.phone.number,
+    birthday: () => faker.date.past({ years: 2000 }).toString(),
     gender: () => faker.helpers.arrayElement(['F', 'M']),
     vehicle_id: new mongoose.Types.ObjectId(),
     cnh_number: () =>
-      String(faker.datatype.number({ min: 10000000000, max: 99999999999 })),
+      String(faker.number.int({ min: 10000000000, max: 99999999999 })),
     cnh_type: faker.helpers.arrayElement(['A', 'B', 'C', 'D', 'E']),
   },
   {
@@ -53,12 +52,12 @@ factory.define(
     driver_id: () => new mongoose.Types.ObjectId(),
     vehicle_id: () => new mongoose.Types.ObjectId(),
     origin: () => [
-      Number(faker.address.longitude()),
-      Number(faker.address.latitude()),
+      Number(faker.location.longitude()),
+      Number(faker.location.latitude()),
     ],
     destination: () => [
-      Number(faker.address.longitude()),
-      Number(faker.address.latitude()),
+      Number(faker.location.longitude()),
+      Number(faker.location.latitude()),
     ],
   },
   {

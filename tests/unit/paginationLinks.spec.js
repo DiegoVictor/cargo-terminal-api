@@ -5,7 +5,7 @@ import paginationLinks from '../../src/utils/paginationLinks';
 describe('paginationLinks', () => {
   it('should be able to return all links', async () => {
     const page = 3;
-    const pagesTotal = faker.datatype.number({ min: 5 });
+    const pagesTotal = faker.number.int({ min: 5 });
     const resourceUrl = faker.internet.url();
 
     const links = paginationLinks(page, pagesTotal, resourceUrl);
@@ -20,7 +20,7 @@ describe('paginationLinks', () => {
 
   it('should not able to return previous and first page links', async () => {
     const page = 1;
-    const pagesTotal = faker.datatype.number({ min: 5 });
+    const pagesTotal = faker.number.int({ min: 5 });
     const resourceUrl = faker.internet.url();
 
     const links = paginationLinks(page, pagesTotal, resourceUrl);
@@ -32,7 +32,7 @@ describe('paginationLinks', () => {
   });
 
   it('should not be able to return next and last page links', async () => {
-    const pagesTotal = faker.datatype.number({ min: 5 });
+    const pagesTotal = faker.number.int({ min: 5 });
     const page = pagesTotal;
     const resourceUrl = faker.internet.url();
 

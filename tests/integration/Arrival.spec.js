@@ -355,8 +355,8 @@ describe('Arrival controller', () => {
       .expect(404)
       .send({
         origin: {
-          latitude: faker.address.latitude(),
-          longitude: faker.address.longitude(),
+          latitude: faker.location.latitude(),
+          longitude: faker.location.longitude(),
         },
       });
 

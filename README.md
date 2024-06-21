@@ -1,10 +1,10 @@
 # [API] Cargo Terminal
 [![AppVeyor](https://img.shields.io/appveyor/build/diegovictor/cargo-terminal-api?logo=appveyor&style=flat-square)](https://ci.appveyor.com/project/DiegoVictor/cargo-terminal-api)
-[![mongo](https://img.shields.io/badge/mongodb-7.3.1-13aa52?style=flat-square&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
-[![nodemon](https://img.shields.io/badge/nodemon-2.0.22-76d04b?style=flat-square&logo=nodemon)](https://nodemon.io/)
+[![mongo](https://img.shields.io/badge/mongodb-8.4.3-13aa52?style=flat-square&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![nodemon](https://img.shields.io/badge/nodemon-3.1.4-76d04b?style=flat-square&logo=nodemon)](https://nodemon.io/)
 [![eslint](https://img.shields.io/badge/eslint-8.43.0-4b32c3?style=flat-square&logo=eslint)](https://eslint.org/)
 [![airbnb-style](https://flat.badgen.net/badge/style-guide/airbnb/ff5a5f?icon=airbnb)](https://github.com/airbnb/javascript)
-[![jest](https://img.shields.io/badge/jest-29.5.0-brightgreen?style=flat-square&logo=jest)](https://jestjs.io/)
+[![jest](https://img.shields.io/badge/jest-29.7.0-brightgreen?style=flat-square&logo=jest)](https://jestjs.io/)
 [![coverage](https://img.shields.io/codecov/c/gh/DiegoVictor/cargo-terminal-api?logo=codecov&style=flat-square)](https://codecov.io/gh/DiegoVictor/cargo-terminal-api)
 [![MIT License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](https://raw.githubusercontent.com/DiegoVictor/cargo-terminal-api/main/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)<br>

@@ -1,0 +1,345 @@
+{
+	"info": {
+		"_postman_id": "bd97eeb0-d659-4099-ac66-c91849c23250",
+		"name": "Cargo Terminal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19527899"
+	},
+	"item": [
+		{
+			"name": "Vehicle",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/vehicles",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"vehicles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const { _id } = pm.response.json();\r",
+									"if (_id) {\r",
+									"    pm.collectionVariables.set('vehicle_id', _id)\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": 2,\r\n    \"model\": \"Camry\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/vehicles",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"vehicles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"type\": 1,\r\n\t\"model\": \"Land Cruiser\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/vehicles/{{vehicle_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"vehicles",
+								"{{vehicle_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Driver",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/drivers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"drivers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const { _id } = pm.response.json();\r",
+									"\r",
+									"if (_id) {\r",
+									"    pm.collectionVariables.set('driver_id', _id)\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"cpf\": \"99999999999\",\r\n\t\"name\": \"John Doe\",\r\n\t\"phone\": \"+55 679 924356443\",\r\n\t\"birthday\": \"2000-01-01\",\r\n\t\"gender\": \"M\",\r\n\t\"cnh_number\": \"DJUKPTRF9EH178332\",\r\n\t\"cnh_type\": \"A\",\r\n\t\"vehicle_id\": \"{{vehicle_id}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/drivers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"drivers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"vehicle_id\": \"{{vehicle_id}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/drivers/{{driver_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"drivers",
+								"{{driver_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Arrivals",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/arrivals",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"arrivals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const { _id } = pm.response.json();\r",
+									"\r",
+									"if (_id) {\r",
+									"    pm.collectionVariables.set('arrival_id', _id)\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"vehicle_id\": \"{{vehicle_id}}\",\r\n\t\"driver_id\": \"{{driver_id}}\",\r\n\t\"origin\": {\r\n\t\t\"longitude\": -145.6955,\r\n\t\t\"latitude\": 16.3805\r\n\t},\r\n\t\"destination\": {\r\n\t\t\"longitude\": -100.6317,\r\n\t\t\"latitude\": 60.1977\r\n\t}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/arrivals",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"arrivals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"vehicle_id\": \"{{vehicle_id}}\",\r\n\t\"driver_id\": \"{{driver_id}}\",\r\n\t\"origin\": {\r\n\t\t\"longitude\": -145.6955,\r\n\t\t\"latitude\": 16.3805\r\n\t},\r\n\t\"destination\": {\r\n\t\t\"longitude\": -100.6317,\r\n\t\t\"latitude\": 60.1977\r\n\t}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/arrivals/{{arrival_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"arrivals",
+								"{{arrival_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Travel",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/travels",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"travels"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3333/v1",
+			"type": "string"
+		},
+		{
+			"key": "vehicle_id",
+			"value": ""
+		},
+		{
+			"key": "driver_id",
+			"value": ""
+		},
+		{
+			"key": "arrival_id",
+			"value": ""
+		}
+	]
+}

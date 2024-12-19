@@ -1,6 +1,6 @@
 # [API] Cargo Terminal
 [![AppVeyor](https://img.shields.io/appveyor/build/diegovictor/cargo-terminal-api?logo=appveyor&style=flat-square)](https://ci.appveyor.com/project/DiegoVictor/cargo-terminal-api)
-[![mongo](https://img.shields.io/badge/mongodb-8.4.3-13aa52?style=flat-square&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![mongo](https://img.shields.io/badge/mongodb-5.9.2-13aa52?style=flat-square&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 [![nodemon](https://img.shields.io/badge/nodemon-3.1.4-76d04b?style=flat-square&logo=nodemon)](https://nodemon.io/)
 [![eslint](https://img.shields.io/badge/eslint-8.43.0-4b32c3?style=flat-square&logo=eslint)](https://eslint.org/)
 [![airbnb-style](https://flat.badgen.net/badge/style-guide/airbnb/ff5a5f?icon=airbnb)](https://github.com/airbnb/javascript)

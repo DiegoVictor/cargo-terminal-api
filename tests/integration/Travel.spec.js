@@ -1,5 +1,6 @@
 import request from 'supertest';
 import mongoose from 'mongoose';
+import { faker } from '@faker-js/faker';
 
 import factory from '../utils/factory';
 import Arrival from '../../src/models/Arrival';
@@ -25,8 +26,11 @@ describe('Travel controller', () => {
     const vehicles = await factory.createMany(
       'Vehicle',
       4,
-      Array.from({ length: 4 }, (index) => (index % 2) + 1)
+      Array.from({ length: 4 }, () => ({
+        type: faker.number.int({ min: 1, max: 2 }),
+      }))
     );
+
     const arrivals = await factory.createMany(
       'Arrival',
       4,
@@ -36,24 +40,27 @@ describe('Travel controller', () => {
     const response = await request(app).get('/v1/travels').expect(200).send();
 
     const groups = arrivals.reduce((group, arrival) => {
-      const vehicle = vehicles.find(
-        ({ _id }) => _id === arrival.vehicle_id.toString()
-      );
-
-      if (!group[vehicle.type]) {
-        group[vehicle.type] = { destinations: [], origins: [] };
-      }
-
-      group[vehicle.type].destinations.push(arrival.destination);
-      group[vehicle.type].origins.push(arrival.origin);
+      vehicles.forEach((vehicle) => {
+        if (vehicle._id.toString() === arrival.vehicle_id.toString()) {
+          if (!group[vehicle.type]) {
+            group[vehicle.type] = {
+              destinations: [arrival.destination],
+              origins: [arrival.origin],
+            };
+          } else {
+            group[vehicle.type].destinations.push(arrival.destination);
+            group[vehicle.type].origins.push(arrival.origin);
+          }
+        }
+      });
 
       return group;
     }, {});
 
-    Object.keys(groups).forEach((key) => {
+    Object.keys(groups).forEach((vehicleType) => {
       expect(response.body).toContainEqual({
-        ...groups[key],
-        type: Number(key),
+        ...groups[vehicleType],
+        type: Number(vehicleType),
       });
     });
   });

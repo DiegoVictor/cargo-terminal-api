@@ -37,6 +37,8 @@ describe('Travel controller', () => {
       vehicles.map((vehicle) => ({ vehicle_id: vehicle._id, driver_id }))
     );
 
+    arrivals.sort((a, b) => a._id - b._id);
+
     const response = await request(app).get('/v1/travels').expect(200).send();
 
     const groups = arrivals.reduce((group, arrival) => {
